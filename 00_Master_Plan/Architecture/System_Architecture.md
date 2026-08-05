@@ -61,3 +61,22 @@ Clubs
 Player Ratings
 
 Scouting Notes
+
+## Scout Radar v1 Decisions
+
+Initial focus position:
+- Central Midfielder (CM)
+
+Primary scouting factors:
+- Minutes played
+- Market value
+- Contract situation
+
+Initial database focus:
+- Players
+- Clubs
+- Player statistics
+- Market information
+- Scouting reports
+
+The first MVP will focus on identifying young midfielders with high potential and good opportunity value.

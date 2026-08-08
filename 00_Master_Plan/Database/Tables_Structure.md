@@ -12,8 +12,15 @@ Each table represents a specific football-related entity and contains attributes
 
 ## Purpose
 
-Stores the main information about football players.
-
+| Column          | Type               | Description              |
+| --------------- | ------------------ | ------------------------ |
+| player_id       | SERIAL PRIMARY KEY | Unique player identifier |
+| first_name      | VARCHAR(50)        | Player first name        |
+| last_name       | VARCHAR(50)        | Player surname           |
+| date_of_birth   | DATE               | Date of birth            |
+| nationality     | VARCHAR(50)        | Player nationality       |
+| preferred_foot  | VARCHAR(10)        | Left / Right / Both      |
+| club_id         | INTEGER FK         | Current club reference   |
 ## Structure
 
 | Column | Type | Description |
@@ -95,7 +102,10 @@ Stores football match information.
 
 | Column | Type | Description |
 |---|---|---|
-| match_id | SERIAL PRIMARY KEY | Unique match identifier |
+| match_id | SPlayer reference |
+| club_id | INTEGER FK | Club reference |
+| start_date | DATE | Contra
+ERIAL PRIMARY KEY | Unique match identifier |
 | competition_id | INTEGER FK | Competition reference |
 | home_team_id | INTEGER FK | Home club |
 | away_team_id | INTEGER FK | Away club |
@@ -113,17 +123,16 @@ Stores player contract information.
 
 ## Structure
 
-| Column | Type | Description |
-|---|---|---|
-| contract_id | SERIAL PRIMARY KEY | Unique contract identifier |
-| player_id | INTEGER FK | Player reference |
-| club_id | INTEGER FK | Club reference |
-| start_date | DATE | Contract start |
-| end_date | DATE | Contract expiry |
-| salary | INTEGER | Estimated salary |
-| market_value | INTEGER | Market value |
-
----
+| Column            | Type               | Description                    |
+| ----------------- | ------------------ | ------------------------------ |
+| contract_id       | SERIAL PRIMARY KEY | Unique contract identifier     |
+| player_id         | INTEGER FK         | Player reference               |
+| start_date        | DATE               | Contract start date            |
+| end_date          | DATE               | Contract expiry date           |
+| contract_type     | VARCHAR(20)        | Professional / Youth / Loan    |
+| loan_from         | VARCHAR(100)       | Parent club if player is loaned|
+| salary_per_week   | INTEGER            | Weekly salary, if available    |
+| release_clause    | INTEGER            | Release clause, if available   |
 
 # 7. Injuries Table
 

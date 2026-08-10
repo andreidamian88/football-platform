@@ -226,3 +226,41 @@ Possible future additions:
 - Player Development Timeline
 - Betting Analysis
 - AI Recommendations
+
+# 11. Club Competitions Table
+
+## Purpose
+
+Creates a many-to-many relationship between clubs and competitions.
+
+A club can participate in multiple competitions, while a competition can contain multiple clubs.
+
+## Structure
+
+| Column                  | Type               | Description                         |
+| ----------------------- | ------------------ | ----------------------------------- |
+| club_competition_id     | SERIAL PRIMARY KEY | Unique participation identifier     |
+| club_id                 | INTEGER NOT NULL   | Club reference                      |
+| competition_id          | INTEGER NOT NULL   | Competition reference               |
+| season                  | VARCHAR(20) NOT NULL | Football season                    |
+
+## Relationships
+
+- `club_id` references `clubs(club_id)`
+- `competition_id` references `competitions(competition_id)`
+
+## Constraints
+
+The combination of:
+
+- `club_id`
+- `competition_id`
+- `season`
+
+must be unique.
+
+This prevents the same club from being registered in the same competition more than once during the same season.
+
+Constraint name:
+
+`unique_club_competition_season'

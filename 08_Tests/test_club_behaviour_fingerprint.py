@@ -11,8 +11,9 @@ sys.path.insert(0, str(PROJECT_ROOT / "06_Scripts"))
 
 # Import the functions we want to test
 from club_behaviour_fingerprint import (
-    calculate_lead_protection,
-    calculate_comeback_win_rate
+     calculate_lead_protection,
+     calculate_comeback_win_rate,
+     classify_evidence
 )
 
 
@@ -41,3 +42,19 @@ class TestClubBehaviourFingerprint(unittest.TestCase):
     def test_lead_protection_with_zero_successes(self):
         result = calculate_lead_protection(10, 0)
         self.assertEqual(result, 0.0)
+
+    def test_evidence_no_opportunities(self):
+        self.assertEqual(classify_evidence(0), "No evidence")
+
+    def test_evidence_very_limited(self):
+        self.assertEqual(classify_evidence(1), "Very limited")
+        self.assertEqual(classify_evidence(3), "Very limited")
+
+    def test_evidence_limited(self):
+        self.assertEqual(classify_evidence(5), "Limited")
+
+    def test_evidence_developing(self):
+        self.assertEqual(classify_evidence(10), "Developing")
+
+    def test_evidence_stronger(self):
+        self.assertEqual(classify_evidence(20), "Stronger")

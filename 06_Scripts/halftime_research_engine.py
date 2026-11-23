@@ -5,6 +5,8 @@ import psycopg2
 from dotenv import load_dotenv
 from pathlib import Path
 
+from club_behaviour_fingerprint import classify_evidence
+
 
 # ==================================================
 # 1. PROJECT CONFIGURATION
@@ -177,9 +179,11 @@ def display_club_behaviour(results):
         f"{'Protection %':>13} "
         f"{'Comeback %':>11} "
         f"{'Avoided %':>10}"
+        f"{'Lead Evidence':>18} "
+        f"{'Comeback Evidence':>20}"
     )
 
-    print("-" * 135)
+    print("-" * 180)
 
     for row in results:
 
@@ -189,11 +193,11 @@ def display_club_behaviour(results):
         leads = row[3]
         protected = row[4]
         points = row[7]
-
-        comeback_opportunities = row[8]
+        lead_evidence = classify_evidence(row[3])
+        comeback_evidence = classify_evidence(row[8])
         comeback_wins = row[9]
         avoided_defeats = row[10]
-
+        comeback_opportunities = row[8]
         protection_rate = row[11]
         comeback_rate = row[12]
         avoided_rate = row[13]
@@ -225,11 +229,11 @@ def display_club_behaviour(results):
             f"{avoided_defeats:>8} "
             f"{protection_display:>13} "
             f"{comeback_display:>11} "
-            f"{avoided_display:>10}"
+            f"{avoided_display:>10} "
+            f"{lead_evidence:>18} "
+            f"{comeback_evidence:>20}"
         )
-
-    print("\n" + "=" * 135)
-
+        print("\n" + "=" * 180)
 
 # ==================================================
 # 7. MAIN RESEARCH ENGINE
@@ -298,26 +302,6 @@ def validate_club_behaviour(club_results, overview_results):
     print("\nValidation calculations completed.")
 
 # ==================================================
-# 8. CLASSIFY EVIDENCE STRENGTH
-# ==================================================
-
-def classify_evidence(sample_size):
-
-    if sample_size == 0:
-        return "No evidence"
-
-    elif sample_size <= 3:
-        return "Very limited"
-
-    elif sample_size <= 7:
-        return "Limited"
-
-    elif sample_size <= 14:
-        return "Developing"
-
-    else:
-        return "Stronger"
-
      # Test evidence classification
 
 def main():

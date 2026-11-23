@@ -80,6 +80,36 @@ If the denominator is zero, the percentage is NULL rather than zero.
 
 This distinction prevents teams without opportunities from being incorrectly treated as having a 0% success rate.
 
+### Evidence Classification
+
+GoalLens uses sample-size classifications to communicate how much evidence supports an observed team behaviour.
+
+The classification is based on the number of relevant opportunities available for each metric.
+
+| Sample size | Evidence classification |
+|---:|---|
+| 0 | No evidence |
+| 1–3 | Very limited |
+| 4–7 | Limited |
+| 8–14 | Developing |
+| 15 or more | Stronger |
+
+**How to interpret the classifications:**
+
+- **No evidence:** No relevant opportunities have been recorded.
+- **Very limited:** Only a small number of opportunities are available.
+- **Limited:** Some observations are available, but conclusions should remain cautious.
+- **Developing:** A larger number of observations is available for analysis.
+- **Stronger:** More observations are available than in the lower categories.
+
+**Important methodological limitation:**
+
+These classifications are internal GoalLens descriptive conventions. They are not statistically validated confidence levels and do not establish statistical significance.
+
+A larger sample provides more observations, but does not automatically guarantee reliable conclusions. Data quality, consistency, context and the number of relevant opportunities must also be considered.
+
+GoalLens displays evidence classifications to discourage overconfident interpretations of small samples.
+
 ## 5. Initial dataset validation
 
 Current dataset results:

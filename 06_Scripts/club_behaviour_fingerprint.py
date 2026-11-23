@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 
+
 # ==========================================
 # 1. PROJECT CONFIGURATION
 # ==========================================
@@ -112,6 +113,27 @@ def calculate_comeback_win_rate(comeback_opportunities, comeback_wins):
     ) * 100
 
     return round(percentage, 2)
+
+# ==================================================
+# CLASSIFY EVIDENCE STRENGTH
+# ==================================================
+
+def classify_evidence(sample_size):
+
+    if sample_size == 0:
+        return "No evidence"
+
+    elif sample_size <= 3:
+        return "Very limited"
+
+    elif sample_size <= 7:
+        return "Limited"
+
+    elif sample_size <= 14:
+        return "Developing"
+
+    else:
+        return "Stronger"
 
 # ==========================================
 # ==========================================
